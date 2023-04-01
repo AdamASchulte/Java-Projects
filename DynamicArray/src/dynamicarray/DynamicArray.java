@@ -54,6 +54,8 @@ public class DynamicArray {
         
         myDynArr.add(19);
         myDynArr.printDynArr();
+        
+        System.out.println(myDynArr.getNumElements());
     }
     
 }

@@ -14,7 +14,10 @@ public class DynArr {
     
     public DynArr(){}
     
-    
+    public int getNumElements()
+    {
+        return numElements;
+    }
     // allows user to add an element to the next available index of a DynArr
     public void add(int element)
     {
@@ -102,7 +105,7 @@ public class DynArr {
     }
     
     //checks if every element in a DynArr was set by a user
-    public boolean checkFull(){
+    private boolean checkFull(){
         if(l == numElements)
         {
             return true;
