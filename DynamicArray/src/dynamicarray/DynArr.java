@@ -1,9 +1,9 @@
 package dynamicarray;
 public class DynArr {
     
-    private int l = 0;
+    private int l = 0; // length of array. (last index + 1)
     private int[] arr = new int[1];
-    private int numElements = 0;
+    private int numElements = 0; //number of user set elements of the DynArr
     
     
     //constructors: can instantiate a DynArr with or without a predetermined size
@@ -11,6 +11,7 @@ public class DynArr {
     {
         l = size;
     }
+    
     public DynArr(){}
     
     
@@ -51,9 +52,46 @@ public class DynArr {
             add(addArr[j]);
         }
     }
+    
+    //allows user to remove last element set by user
+    public void remove()
+    {
+        if(numElements == 0)
+        {
+            System.out.println("Since DynArr is empty, it cannot remove an element. Please add an element before removing");
+        }
+        else
+        {
+        arr[numElements - 1] = 0;
+        numElements--;
+        }
+    }
+    
+    //allows user to remove elements at a specific index
+    public void removeIndex(int index)
+    {
+        if(numElements == 0)
+        {
+            System.out.println("DynArr is empty, please add elements before removing an index");
+        }
+        if(index >= 0 && index <= numElements - 1)
+        { 
+            for(int i = index; i < numElements - 2; i++)
+            {
+                arr[i] = arr[i+1];
+            }
+            arr[numElements - 1] = 0;
+            numElements--;
+        }
+        else
+        {
+            System.out.println("Invalid index. 0 < index < numElements");
+        }
+    }
+    //allows user to overwrite a specific index they have already written to
     public void replace(int newElement, int index)
     {
-        if(index >= 0 && index <= l - 1)
+        if(index >= 0 && index <= numElements - 1)
         {
             arr[index] = newElement;
         }
@@ -77,33 +115,31 @@ public class DynArr {
     {
         if(l != 0)
         {
-            for(int i = 0; i < numElements; i++)
+            for(int i = 0; i < numElements - 1; i++)
             {
                 System.out.print(arr[i] + ", ");
             }
+            System.out.print(arr[numElements - 1]);
             System.out.println();
         }
         else
         {
-            System.out.println("This DynArr is empty");
+            System.out.println("This DynArr is empty so it cannot be printed");
         }
     }
     
-    // not finished, wont change the size
-    public void resize(int size)
+    //allows user to shrink size of the DynArr, deleting elements outside the specified size
+    //size is # of elements
+    public void shrink(int size)
     {
-        l = size;
-        if(size > 0 && size > l)
-        {
-            
-        }
-        else if(size > 0){
-            int[] temp = arr;
-            int[] arr = new int[size];
+        if(size > 0 && size < l){
+            int[] temp = new int[size];
             for(int i = 0; i < size; i++)
             {
-                arr[i] = temp[i];
+                temp[i] = arr[i];
             }
+            arr = temp;
+            numElements = size;
         }
         else if(size == 0)
         {
@@ -113,6 +149,7 @@ public class DynArr {
         {
             System.out.println("Inavlid DynArr size. Must be greater than 0");
         }
+        l = size;
     }
     
     //calls quickSort on the DynArr to allow user to conveniently sort the DynArr

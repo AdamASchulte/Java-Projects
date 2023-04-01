@@ -5,8 +5,9 @@ public class DynamicArray {
     
     public static void main(String[] args) {
         DynArr ex = new DynArr();
-      
+        ex.remove();
         ex.printDynArr();
+        ex.removeIndex(0);
         
         ex.add(1);
         ex.printDynArr();
@@ -39,7 +40,19 @@ public class DynamicArray {
         myDynArr.add(temp);
         myDynArr.printDynArr();
         
-        myDynArr.resize(6);
+        myDynArr.shrink(6);
+        myDynArr.printDynArr();
+        
+        myDynArr.shrink(5);
+        myDynArr.printDynArr();
+        
+        myDynArr.remove();
+        myDynArr.printDynArr();
+        
+        myDynArr.removeIndex(1);
+        myDynArr.printDynArr();
+        
+        myDynArr.add(19);
         myDynArr.printDynArr();
     }
     
