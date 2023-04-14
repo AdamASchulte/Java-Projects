@@ -6,9 +6,11 @@ Threads: a project that reads a sudoku solution from a text file and checks if i
 
 InterviewQuestions: A really great professor had us do a lab where we coded solutions to a bunch of typical interview questions. 
 
-Sorting: All the basic sorting algorithms. (beside quicksort, which is implemented in Threads funny enough)
+Sorting: All the basic sorting algorithms.
 
 DynamicArray: I implemented my own version of a dynamic integer array with member variables and functions that I decided to implement on my own. Obviously it's nothing groundbreaking, but I didnt reference google a single time doing it, so there's something to be said for that. Any advice on optimizations/additions are welcome.
 
 DoublyLinkedList: My implementation of a doubly linked list of intergers. Minimal reference to internet sources was used to create this version of a doubly linked list. Once again any advice on optimizations/simplifications/additions is welcome.
+
+CLOCKALG: a project for Operating Systems that mimics the clock algorithm for demand paging. Still in progress. File IO, Clock algorithm, understanding of paging.
 
