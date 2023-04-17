@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 
 
 public class CLOCKALG
@@ -18,7 +17,29 @@ public class CLOCKALG
         File outputFile = new File(args[4]);
         FileWriter outputWriter = new FileWriter(outputFile);
         
-        char[][] info = new char[0][];
+        LinkedList clock = new LinkedList();
+
+        while(inputScanner.hasNext())
+        {
+            String line = inputScanner.nextLine();
+            String action = line.substring(0,1);
+            String pageNum = line.substring(2,3);
+
+            if(action.equals("R"))
+            {
+                
+            }
+
+
+            System.out.print(action + " ");
+            System.out.println(pageNum);
+
+
+        }
+        
+
+        inputScanner.close();
+        outputWriter.close();
     }
     
 }
