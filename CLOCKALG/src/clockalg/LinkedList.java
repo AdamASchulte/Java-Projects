@@ -14,7 +14,7 @@ public class LinkedList {
         first = new Node(data);
     }
 
-    public void add(page data)
+    public void addFirst(page data)
     {
         if(first == null)
         {
@@ -58,24 +58,24 @@ public class LinkedList {
         }
     }
 
-    public void removeSingleData(int d)
+    public void removePage(int pageNumber)
     {
         boolean notDeleted = true;
         Node x = first;
         Node prev = null;
         do {
-            if(x.getPage().getNum() == d && x != first && x != last)
+            if(x.getPage().getNum() == pageNumber && x != first && x != last)
             {
                 prev.setNext(x.getNext());
                 notDeleted = false;
             }
-            else if(x.getPage().getNum() == d && x == first)
+            else if(x.getPage().getNum() == pageNumber && x == first)
             {
                 first = x.getNext();
                 last.setNext(first);
                 notDeleted = false;
             }
-            else if(x.getPage().getNum() == d && x == last)
+            else if(x.getPage().getNum() == pageNumber && x == last)
             {
                 last = prev;
                 last.setNext(first);
@@ -129,6 +129,21 @@ public class LinkedList {
         }
 
         return false;
+    }
+
+    public int getLength()
+    {
+        if(first == null)
+        {
+            return 0;
+        }
+        int i = 0;
+        Node x = first;
+        do {
+            i++;
+            x = x.getNext();
+        } while(x != first);
+        return i;
     }
 
 }
