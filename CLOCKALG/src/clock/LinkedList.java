@@ -1,6 +1,6 @@
-package clockalg;
 
-public class LinkedList {
+package clock;
+class LinkedList {
     private Node first;
     private Node last;
 
@@ -13,7 +13,17 @@ public class LinkedList {
     {
         first = new Node(data);
     }
-
+    
+    public Node getFirst()
+    {
+        return first;
+    }
+    
+    public page getFirstPage()
+    {
+        return first.getPage();
+    }
+    
     public void addFirst(page data)
     {
         if(first == null)
@@ -145,5 +155,4 @@ public class LinkedList {
         } while(x != first);
         return i;
     }
-
 }

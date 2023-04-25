@@ -1,6 +1,7 @@
-package clockalg;
 
-public class Node {
+package clock;
+
+class Node {
     private page data;
     private Node next;
     
@@ -24,4 +25,3 @@ public class Node {
         return data;
     }
 }
-

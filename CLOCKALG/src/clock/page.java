@@ -1,6 +1,6 @@
-package clockalg;
+package clock;
 
-public class page {
+class page {
     private int Number = -1;
     private int modBit = 0;
     private int refBit = 0;
@@ -9,6 +9,10 @@ public class page {
         Number = num;
     }
 
+    public void setData(int num)
+    {
+        Number = num;
+    }
     public int getNum() {
         return Number;
     }
@@ -21,19 +25,11 @@ public class page {
         return refBit;
     }
 
-    public void setMod() {
-        if (modBit == 1) {
-            modBit = 0;
-        } else {
-            modBit = 1;
-        }
+    public void setMod(int mod) {
+        modBit = mod;
     }
 
-    public void setRef() {
-        if (refBit == 0) {
-            refBit = 1;
-        } else {
-            refBit = 0;
-        }
+    public void setRef(int ref) {
+        refBit = ref;
     }
 }
