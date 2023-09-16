@@ -1,30 +1,54 @@
 class main {
 
-  public static void main(String args[]) {
-    Chopstick[] chopsticks = new Chopstick[args[0]];
-    for (int j = 0; j < args[0]; j++) {
-      chopsticks[i] = new Chopstick();
+  public static void main(String[] args) {
+    int n = Integer.parseInt(args[0]);
+    Chopstick[] chopsticks = new Chopstick[n];
+    for (int j = 0; j < n; j++) {
+      chopsticks[j] = new Chopstick();
     }
 
-    Thread[] philosophers = new Thread[args[0]];
-    philosophers[0] =
-      new Thread(new Philosopher(0, chopsticks[args[0]], chopsticks[0]));
-    for (int i = 1; i < philosophers.length; i++) {
-      philosophers[i] =
-        new Thread(new Philosopher(i, chopsticks[i - 1], chopsticks[i]));
-      threads[i].start();
+    Philosopher[] philosophers = new Philosopher[n];
+    for (int i = 0; i < philosophers.length; i++) {
+      if (i == philosophers.length - 1) {
+        philosophers[i] =
+          new Philosopher(
+            i,
+            chopsticks[(i + 1) % chopsticks.length],
+            chopsticks[i]
+          );
+      } else {
+        philosophers[i] =
+          new Philosopher(
+            i,
+            chopsticks[i],
+            chopsticks[(i + 1) % chopsticks.length]
+          );
+      }
+
+      Thread t = new Thread(philosophers[i]);
+      t.start();
     }
   }
 }
 
 class Chopstick {
 
-  private bool isTaken = false;
+  public boolean isTaken = false;
 
   public Chopstick() {}
+
+  public void lock() {
+    if (!isTaken) {
+      isTaken = true;
+    }
+  }
+
+  public void Unlock() {
+    isTaken = false;
+  }
 }
 
-class Philosoper implements Runnable {
+class Philosopher implements Runnable {
 
   private int position;
   private Chopstick leftChopstick;
@@ -32,11 +56,48 @@ class Philosoper implements Runnable {
   private boolean hungry = true;
 
   public Philosopher(int pos, Chopstick left, Chopstick right) {
-    position = pos;
-    leftChopstick = left;
-    rightChopstick = right;
+    this.position = pos;
+    this.leftChopstick = left;
+    this.rightChopstick = right;
   }
 
-  public void run() {}
-}
+  public void takeChopstick(Chopstick chopstick) {
+    while (chopstick.isTaken) {}
+    chopstick.lock();
+  }
 
+  public void releaseChopstick(Chopstick chopstick) {
+    chopstick.Unlock();
+  }
+
+  public void run() {
+    try {
+      while (this.hungry) {
+        takeChopstick(this.leftChopstick);
+        System.out.println(
+          "Philosopher " + this.position + " has picked up left chopstick"
+        );
+        takeChopstick(this.rightChopstick);
+        System.out.println(
+          "Philosopher " + this.position + " has picked up right chopstick"
+        );
+        System.out.println(
+          "Philosopher " + this.position + " has started eating"
+        );
+        Thread.sleep(500);
+        this.hungry = false;
+        System.out.println(
+          "Philosopher " + this.position + " has finished eating"
+        );
+        releaseChopstick(leftChopstick);
+        releaseChopstick(rightChopstick);
+        System.out.println(
+          "Philosopher " + this.position + " has put down his chopsticks"
+        );
+      }
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      return;
+    }
+  }
+}
