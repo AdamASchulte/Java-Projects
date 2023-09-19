@@ -2,7 +2,6 @@ class main {
 
   public static void main(String[] args) {
     int n = Integer.parseInt(args[0]);
-    System.out.println(n);
     Chopstick[] chopsticks = new Chopstick[n];
     for (int j = 0; j < n; j++) {
       chopsticks[j] = new Chopstick();
@@ -65,7 +64,6 @@ class Philosopher implements Runnable {
   }
 
   public void run() {
-    System.out.println("Thread " + position + " has begun");
     try {
       while(this.hungry)
       {
