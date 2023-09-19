@@ -93,7 +93,7 @@ class RED implements Runnable{
                 while(i > 0)
                 {
                     object.grantAccess(0);
-                    Thread.sleep(500 * (int) Math.random());
+                    Thread.sleep(500);
                     object.exit(0);
                     i--;
                 }
@@ -125,7 +125,7 @@ class BLUE implements Runnable{
                 while(i > 0)
                 {
                     object.grantAccess(1);
-                    Thread.sleep(500 * (int) Math.random());
+                    Thread.sleep(500);
                     object.exit(1);
                     i--;
                 }
